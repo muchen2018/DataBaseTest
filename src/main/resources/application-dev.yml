@@ -1,0 +1,58 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        druid:
+            url: jdbc:mysql://192.168.30.75:3306/disk?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+            username: root
+            password: root
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true
+    rabbitmq: 
+      host: 192.168.20.26
+      port: 5672
+      username: test
+      password: test123
+      template: 
+        mandatory: true
+      listener: 
+        simple:
+          concurrency: 5  #最小消息监听线程数
+          max-concurrency: 20 #最大消息监听线程数
+fdfs:
+  base-url: http://192.168.20.26/
+  secret-key: FastDFS1234567890
+  soTimeout: 6000
+  connectTimeout: 3000
+  trackerList:            #TrackerList参数,支持多个
+    - 192.168.20.21:22122
+    - 192.168.20.26:22122
+# Elasticsearch
+elasticsearch: 
+  cluster-name: my-application
+  ip: 192.168.30.75,192.168.20.26
+  port: 9300
+  pool: 5

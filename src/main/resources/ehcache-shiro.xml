@@ -1,0 +1,33 @@
+<ehcache>
+	
+	<diskStore path="java.io.tmpdir/shiro-spring-sample"/>
+
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="600" timeToLiveSeconds="600" overflowToDisk="false"
+		diskPersistent="false" diskExpiryThreadIntervalSeconds="600" />
+	
+	<!-- 授权缓存 -->
+	<cache name="authorizationCache" maxEntriesLocalHeap="20000"
+		eternal="false" timeToIdleSeconds="600" timeToLiveSeconds="600"
+		overflowToDisk="false" statistics="true">
+	</cache>
+	
+    <!-- 认证缓存 -->
+    <cache name="authenticationCache"
+           maxEntriesLocalHeap="20000"
+           eternal="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="0"
+           overflowToDisk="false"
+           statistics="true">
+    </cache> 
+
+	<cache name="shiro-activeSessionCache" maxElementsInMemory="10000"
+		eternal="true" overflowToDisk="true" diskPersistent="true"
+		diskExpiryThreadIntervalSeconds="600" />
+
+	<cache name="org.apache.shiro.realm.SimpleAccountRealm.authorization"
+		maxElementsInMemory="100" eternal="false" timeToLiveSeconds="600"
+		overflowToDisk="false" />
+
+</ehcache>
