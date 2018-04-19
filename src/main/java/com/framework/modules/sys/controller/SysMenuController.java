@@ -22,10 +22,6 @@ import java.util.Set;
 
 /**
  * 系统菜单
- * 
- 
- 
- * @date 2016年10月27日 下午9:58:15
  */
 @RestController
 @RequestMapping("/sys/menu")

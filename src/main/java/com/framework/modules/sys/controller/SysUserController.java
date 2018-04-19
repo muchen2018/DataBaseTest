@@ -1,10 +1,21 @@
 package com.framework.modules.sys.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.framework.common.annotation.SysLog;
 import com.framework.common.utils.Constant;
@@ -19,15 +30,9 @@ import com.framework.modules.sys.entity.SysUserEntity;
 import com.framework.modules.sys.service.SysUserRoleService;
 import com.framework.modules.sys.service.SysUserService;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 系统用户
  * 
- 
- 
- * @date 2016年10月31日 上午10:40:10
  */
 @RestController
 @RequestMapping("/sys/user")
@@ -40,7 +45,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 所有用户列表
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@RequiresPermissions("sys:user:list")
 	public R list(@RequestParam Map<String, Object> params){
 		//只有超级管理员，才能查看所有管理员列表
@@ -61,7 +66,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 获取登录的用户信息
 	 */
-	@RequestMapping("/info")
+	@GetMapping("/info")
 	public R info(){
 		return R.ok().put("user", getUser());
 	}
@@ -70,7 +75,7 @@ public class SysUserController extends AbstractController {
 	 * 修改登录用户密码
 	 */
 	@SysLog("修改密码")
-	@RequestMapping("/password")
+	@PutMapping("/password")
 	public R password(String password, String newPassword){
 		Assert.isBlank(newPassword, "新密码不为能空");
 		
@@ -91,7 +96,7 @@ public class SysUserController extends AbstractController {
 	/**
 	 * 用户信息
 	 */
-	@RequestMapping("/info/{userId}")
+	@GetMapping("/info/{userId}")
 	@RequiresPermissions("sys:user:info")
 	public R info(@PathVariable("userId") Long userId){
 		SysUserEntity user = sysUserService.queryObject(userId);
@@ -107,7 +112,7 @@ public class SysUserController extends AbstractController {
 	 * 保存用户
 	 */
 	@SysLog("保存用户")
-	@RequestMapping("/save")
+	@PostMapping("/save")
 	@RequiresPermissions("sys:user:save")
 	public R save(@RequestBody SysUserEntity user){
 		ValidatorUtils.validateEntity(user, AddGroup.class);
@@ -122,7 +127,7 @@ public class SysUserController extends AbstractController {
 	 * 修改用户
 	 */
 	@SysLog("修改用户")
-	@RequestMapping("/update")
+	@PutMapping("/update")
 	@RequiresPermissions("sys:user:update")
 	public R update(@RequestBody SysUserEntity user){
 		ValidatorUtils.validateEntity(user, UpdateGroup.class);
@@ -137,7 +142,7 @@ public class SysUserController extends AbstractController {
 	 * 删除用户
 	 */
 	@SysLog("删除用户")
-	@RequestMapping("/delete")
+	@DeleteMapping("/delete")
 	@RequiresPermissions("sys:user:delete")
 	public R delete(@RequestBody Long[] userIds){
 		if(ArrayUtils.contains(userIds, 1L)){
