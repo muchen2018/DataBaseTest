@@ -13,14 +13,14 @@ import com.github.tobato.fastdfs.FdfsClientConfig;
 @Import(FdfsClientConfig.class)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 @SpringBootApplication
-public class MybootApplication extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MybootApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(MybootApplication.class);
+		return application.sources(Application.class);
 	}
 }
