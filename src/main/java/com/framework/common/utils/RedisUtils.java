@@ -1,11 +1,13 @@
 package com.framework.common.utils;
 
-import com.google.gson.Gson;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.*;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.TimeUnit;
+import com.alibaba.fastjson.JSON;
 
 /**
  * Redis工具类
@@ -28,8 +30,6 @@ public class RedisUtils {
 	 */
 	public final static long NOT_EXPIRE = -1;
 	
-	private final static Gson gson = new Gson();
-
 	public void set(String key, Object value, long expire) {
 		valueOperations.set(key, toJson(value));
 		if (expire != NOT_EXPIRE) {
@@ -77,13 +77,13 @@ public class RedisUtils {
 				|| object instanceof Boolean || object instanceof String) {
 			return String.valueOf(object);
 		}
-		return gson.toJson(object);
+		return JSON.toJSONString(object);
 	}
 
 	/**
 	 * JSON数据，转成Object
 	 */
 	private <T> T fromJson(String json, Class<T> clazz) {
-		return gson.fromJson(json, clazz);
+		return JSON.parseObject(json, clazz);
 	}
 }

@@ -18,7 +18,7 @@ var url = function(name) {
 T.p = url;
 
 //请求前缀
-var baseURL = "/disk/";
+var baseURL = "/database/";
 
 //登录token
 var token = localStorage.getItem("token");

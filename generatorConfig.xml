@@ -10,11 +10,11 @@
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://127.0.0.1:3306/databasetest"
 			userId="root" password="root" />
-		<javaModelGenerator targetPackage="com.framework.modules.bs.entity"
+		<javaModelGenerator targetPackage="com.framework.modules.database.entity"
 			targetProject="DataBaseTest" />
-		<sqlMapGenerator targetPackage="com.framework.modules.bs.dao"
+		<sqlMapGenerator targetPackage="com.framework.modules.database.mapper"
 			targetProject="DataBaseTest" />
-		<javaClientGenerator targetPackage="com.framework.modules.bs.dao"
+		<javaClientGenerator targetPackage="com.framework.modules.database.mapper"
 			targetProject="DataBaseTest" type="XMLMAPPER" />
 
 		<table schema="" tableName="sys_log" alias="" enableSelectByExample="true" 

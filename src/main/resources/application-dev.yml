@@ -3,7 +3,7 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         druid:
-            url: jdbc:mysql://192.168.30.75:3306/disk?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+            url: jdbc:mysql://127.0.0.1:3306/databasetest?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
             username: root
             password: root
             initial-size: 10
@@ -31,28 +31,28 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
-    rabbitmq: 
-      host: 192.168.20.26
-      port: 5672
-      username: test
-      password: test123
-      template: 
-        mandatory: true
-      listener: 
-        simple:
-          concurrency: 5  #最小消息监听线程数
-          max-concurrency: 20 #最大消息监听线程数
-fdfs:
-  base-url: http://192.168.20.26/
-  secret-key: FastDFS1234567890
-  soTimeout: 6000
-  connectTimeout: 3000
-  trackerList:            #TrackerList参数,支持多个
-    - 192.168.20.21:22122
-    - 192.168.20.26:22122
+#   rabbitmq: 
+#     host: 192.168.20.26
+#     port: 5672
+#     username: test
+#     password: test123
+#     template: 
+#       mandatory: true
+#     listener: 
+#       simple:
+#         concurrency: 5  #最小消息监听线程数
+#         max-concurrency: 20 #最大消息监听线程数
+#fdfs:
+#  base-url: http://192.168.20.26/
+#  secret-key: FastDFS1234567890
+#  soTimeout: 6000
+#  connectTimeout: 3000
+#  trackerList:            #TrackerList参数,支持多个
+#   - 192.168.20.21:22122
+#   - 192.168.20.26:22122
 # Elasticsearch
-elasticsearch: 
-  cluster-name: my-application
-  ip: 192.168.30.75,192.168.20.26
-  port: 9300
-  pool: 5
+#elasticsearch: 
+#  cluster-name: my-application
+#  ip: 192.168.30.75,192.168.20.26
+#  port: 9300
+#  pool: 5

@@ -1,12 +1,9 @@
 package com.framework.common.aspect;
 
-import com.framework.common.annotation.SysLog;
-import com.framework.common.utils.HttpContextUtils;
-import com.framework.common.utils.IPUtils;
-import com.framework.modules.sys.entity.SysLogEntity;
-import com.framework.modules.sys.entity.SysUserEntity;
-import com.framework.modules.sys.service.SysLogService;
-import com.google.gson.Gson;
+import java.lang.reflect.Method;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -17,9 +14,13 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
-import java.util.Date;
+import com.alibaba.fastjson.JSON;
+import com.framework.common.annotation.SysLog;
+import com.framework.common.utils.HttpContextUtils;
+import com.framework.common.utils.IPUtils;
+import com.framework.modules.sys.entity.SysLogEntity;
+import com.framework.modules.sys.entity.SysUserEntity;
+import com.framework.modules.sys.service.SysLogService;
 
 
 /**
@@ -69,7 +70,7 @@ public class SysLogAspect {
 		//请求的参数
 		Object[] args = joinPoint.getArgs();
 		try{
-			String params = new Gson().toJson(args[0]);
+			String params =JSON.toJSONString(args[0]);
 			sysLog.setParams(params);
 		}catch (Exception e){
 

@@ -1,9 +1,10 @@
 package com.framework.common.utils;
 
-import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.http.HttpStatus;
 
 /**
  * 返回数据
@@ -17,11 +18,11 @@ public class R extends HashMap<String, Object> {
 	}
 	
 	public static R error() {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, "未知异常，请联系管理员");
+		return error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "未知异常，请联系管理员");
 	}
 	
 	public static R error(String msg) {
-		return error(HttpStatus.SC_INTERNAL_SERVER_ERROR, msg);
+		return error(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg);
 	}
 	
 	public static R error(int code, String msg) {

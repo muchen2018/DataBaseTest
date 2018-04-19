@@ -1,19 +1,20 @@
 package com.framework.modules.sys.oauth2;
 
-import com.framework.common.utils.R;
-import com.google.gson.Gson;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.http.HttpStatus;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
+import java.io.IOException;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
+import org.springframework.http.HttpStatus;
+
+import com.alibaba.fastjson.JSON;
+import com.framework.common.utils.R;
 
 /**
  * oauth2过滤器
@@ -44,7 +45,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
         String token = getRequestToken((HttpServletRequest) request);
         if(StringUtils.isBlank(token)){
             HttpServletResponse httpResponse = (HttpServletResponse) response;
-            String json = new Gson().toJson(R.error(HttpStatus.SC_UNAUTHORIZED, "invalid token"));
+            String json = JSON.toJSONString(R.error(HttpStatus.UNAUTHORIZED.value(), "invalid token"));
             httpResponse.getWriter().print(json);
 
             return false;
@@ -60,9 +61,9 @@ public class OAuth2Filter extends AuthenticatingFilter {
         try {
             //处理登录失败的异常
             Throwable throwable = e.getCause() == null ? e : e.getCause();
-            R r = R.error(HttpStatus.SC_UNAUTHORIZED, throwable.getMessage());
+            R r = R.error(HttpStatus.UNAUTHORIZED.value(), throwable.getMessage());
 
-            String json = new Gson().toJson(r);
+            String json =JSON.toJSONString(r);
             httpResponse.getWriter().print(json);
         } catch (IOException e1) {
 
