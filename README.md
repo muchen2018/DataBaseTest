@@ -3,4 +3,4 @@
 3.mybatis 
 4.swagger
 
-#springboot 1.5.6
+#springboot 2.0.1
