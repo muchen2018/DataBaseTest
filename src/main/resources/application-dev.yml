@@ -3,9 +3,14 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         druid:
-            url: jdbc:mysql://127.0.0.1:3306/databasetest?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
-            username: root
-            password: root
+            first:  #数据源1
+                url: jdbc:mysql://localhost:3306/db1?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: root
+                password: root
+            second:  #数据源2
+                url: jdbc:mysql://localhost:3306/db2?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                username: root
+                password: root
             initial-size: 10
             max-active: 100
             min-idle: 10

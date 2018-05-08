@@ -8,6 +8,10 @@ server:
     connection-timeout: 5000
     context-path: /database
 
+#动态获取方言
+pagehelper:
+    autoRuntimeDialect: true
+
 spring:
     # 环境 dev|test|pro
     profiles:
