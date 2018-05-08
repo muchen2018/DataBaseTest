@@ -3,6 +3,8 @@ package com.framework.modules.shardingtest.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.framework.datasources.DataSourceNames;
@@ -13,6 +15,7 @@ import com.framework.modules.shardingtest.mapper.ShardingtestMapper;
 import com.framework.modules.shardingtest.service.ShardingTestService;
 
 @Service
+@CacheConfig(cacheNames="test")
 public class ShardingTestServiceImpl implements ShardingTestService{
 	
 	@Autowired
@@ -20,6 +23,7 @@ public class ShardingTestServiceImpl implements ShardingTestService{
 
 	@Override
 	@DataSource(name=DataSourceNames.SECOND)
+	@Cacheable
 	public List<Shardingtest> getList() {
 		
 		ShardingtestExample se=new  ShardingtestExample();
