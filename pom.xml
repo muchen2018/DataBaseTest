@@ -149,6 +149,14 @@
 		    <artifactId>fastjson</artifactId>
 		    <version>1.2.46</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.github.tobato/fastdfs-client -->
+		<dependency>
+		    <groupId>com.github.tobato</groupId>
+		    <artifactId>fastdfs-client</artifactId>
+		    <version>1.26.2</version>
+		</dependency>
+		
 	
 		
 	</dependencies>
