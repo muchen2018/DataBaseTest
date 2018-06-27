@@ -214,6 +214,7 @@ public class UploadController {
 			byte[] file = storageClient.downloadFile(group, path, new DownloadCallback<byte[]>() {
 				@Override
 				public byte[] recv(InputStream ins) throws IOException {
+				    
 					return IOUtils.toByteArray(ins);
 				}
 			});
