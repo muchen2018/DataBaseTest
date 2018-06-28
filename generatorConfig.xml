@@ -2,29 +2,29 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 
-	<classPathEntry
-		 location="C:/Users/yuanhangbiao/.m2/repository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar" />
+    <classPathEntry
+         location="C:/Users/yuanhangbiao/.m2/repository/com/oracle/ojdbc7/11.2.0/ojdbc7-11.2.0.jar" />
 
-	<!-- 容器模块数据库 -->
-	<context id="container">
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3306/db1"
-			userId="root" password="root" />
-		<javaModelGenerator targetPackage="com.framework.modules.shardingtest.entity"
-			targetProject="DataBaseTest" />
-		<sqlMapGenerator targetPackage="com.framework.modules.shardingtest.mapper"
-			targetProject="DataBaseTest" />
-		<javaClientGenerator targetPackage="com.framework.modules.shardingtest.mapper"
-			targetProject="DataBaseTest" type="XMLMAPPER" />
+    <!-- 容器模块数据库 -->
+    <context id="container">
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@192.168.20.10:1524:xe"
+            userId="SDE" password="123456" />
+        <javaModelGenerator targetPackage="com.framework.modules.shardingtest.entity"
+            targetProject="DataBaseTest" />
+        <sqlMapGenerator targetPackage="com.framework.modules.shardingtest.mapper"
+            targetProject="DataBaseTest" />
+        <javaClientGenerator targetPackage="com.framework.modules.shardingtest.mapper"
+            targetProject="DataBaseTest" type="XMLMAPPER" />
 
-		<table schema="" tableName="shardingtest" alias="st" enableSelectByExample="true" 
-			enableCountByExample="true"
-			enableDeleteByExample="true"
-			enableUpdateByExample="true"
-			domainObjectName="Shardingtest">	
-			  <generatedKey column="id" sqlStatement="MySql" identity="true"/>
-		</table>
-		
-	</context>
+        <table schema="" tableName="lq" alias="lq" enableSelectByExample="true" 
+            enableCountByExample="true"
+            enableDeleteByExample="true"
+            enableUpdateByExample="true"
+            domainObjectName="lq">    
+              <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        
+    </context>
 
 </generatorConfiguration>
